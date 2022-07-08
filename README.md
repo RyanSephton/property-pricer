@@ -20,7 +20,14 @@ data
 
 Navigating to the root of the repo and running the bash command `python clean_preprocess_data.py` will then invoke the preprocessing script (if imputed postcodes are needed, uncomment the 
 appropriate lines in the clean_preprocess file), and the json file needed will be generated and stored in the `data/cleaned_data/` directory.
- 
+
+
+To run the application from the command line see `main.py` for instructions
+
+To run the application with a basic UI in a webapp, navigate to the root of the directory on the command line and enter `streamlit run app.py`. A browser will then open with all
+of the visuals. NOTE: the conda environment with the requirements.txt must be activated prior to running this.
+
+
 ## Tests
 TBD
 
@@ -28,12 +35,17 @@ TBD
 ## Repo Structure
 ```bash
 ├── data  # Stores files associated with the repo
+├── app.py  # Web app to give a simple UI to the pricing algo
+├── main.py  # Main app entrypoint to allow command line use
+├── main.ipynb  # Main app entrypoint giving a simple example
 ├── property-pricer  # Logs produced during processing
-    ├── __init__.py  # Unit test files
-    ├── ingest.py # Execution and logic for the quarterly pipeline
-    ├── preprocessing.py # Configuration for the production workflow.
-    ├── transform.py # Configurations for development work.
-    └── utils.py  # Used to simplify command line execution
+    ├── __init__.py  # init file for absolute imports
+    ├── ingest.py # Reads the required data in
+    ├── model.py # Specifies the KDE model to calculate crit values
+    ├── determine_price.py # Runs the price determination code
+    ├── preprocessing.py # Manipulates the data into usable format
+    ├── transform.py # Applies feature engineering ready for modelling step
+    └── utils.py  # Helper functions
 ├── README.md # Documentation
-└── clean_preprocess_data.py  # Source code for the application
+└── clean_preprocess_data.py  # Source code for preprocessing the data
 ```
